@@ -13,6 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Wait for artifact
+      run: sleep 60  # wait for 60 seconds
+      
     - name: Download Artifacts
       uses: actions/download-artifact@v3
       with:
