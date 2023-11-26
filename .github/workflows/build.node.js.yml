@@ -53,4 +53,7 @@ jobs:
         aws-region: us-east-2
 
     - name: Deploy to S3 bucket
-      run: aws s3 sync ./build s3://natewilcox.io/ --acl=private --delete
+      run: aws s3 sync ./build s3://www.natewilcox.io/ --acl=private --delete
+
+    - name: Invalidate CloudFront cache
+      run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/index.html"
