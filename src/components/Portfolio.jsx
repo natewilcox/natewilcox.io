@@ -144,7 +144,7 @@ const Portfolio = ({ classicHeader, darkTheme }) => {
     {
       title: "TIC TAC TOE",
       projectInfo:
-        "Simple Tic Tac Toe game built with HTML, CSS, and Javascript. Challenge your friend online or play a stranger",
+        "Simple Tic Tac Toe game built with HTML, CSS, and Javascript. Challenge your friend, play a stranger or ever play against the computer. The computer is nearly unbeatable! Good luck!",
       technologies: "HTML5, PHASER3.5, Typescript",
       industry: "Game Development",
       date: "November 25, 2023",
