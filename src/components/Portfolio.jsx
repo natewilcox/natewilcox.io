@@ -140,6 +140,23 @@ const Portfolio = ({ classicHeader, darkTheme }) => {
         "images/projects/race.png"
       ],
       categories: [filters.APPLICATIONS],
+    },
+    {
+      title: "TIC TAC TOE",
+      projectInfo:
+        "Simple Tic Tac Toe game built with HTML, CSS, and Javascript. Challenge your friend online or play a stranger",
+      technologies: "HTML5, PHASER3.5, Typescript",
+      industry: "Game Development",
+      date: "November 25, 2023",
+      url: {
+        name: "tic-tac-toe.natewilcox.io",
+        link: "https://tic-tac-toe.natewilcox.io/",
+      },
+      thumbImage: "images/projects/ttt.png",
+      sliderImages: [
+        "images/projects/ttt.png"
+      ],
+      categories: [filters.GAMES],
     }
   ];
 
