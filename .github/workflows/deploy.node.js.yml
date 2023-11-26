@@ -1,10 +1,10 @@
 name: deploy.node.js
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["build.node.js"]
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -13,6 +13,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: app-artifact
+        path: ./build
+        
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
