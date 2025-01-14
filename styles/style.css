@@ -71,3 +71,8 @@ main {
 #portfolio > article > img {
     width: 40vw;
 }
+
+#portfolio > article:nth-child(2) > img {
+    height: 40vw;
+    width: unset;
+}
