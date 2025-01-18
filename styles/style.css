@@ -13,66 +13,79 @@ nav {
     top: 0px;
     background-color: white;
     background-color: azure;
-}
 
-nav > ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: center;
-    margin-block-start: 0px;
-    padding-inline-start: 0px;
-}
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: center;
+        margin-block-start: 0px;
+        padding-inline-start: 0px;
+    }
 
-nav > ul > li {
-    padding: 10px;
+    ul > li {
+        padding: 10px;
+    }
 }
 
 main {
     max-width: 1250px;
 }
 
-#header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: bisque;
-}
-
 #about {
     display: grid;
-    grid-template-areas:    "img title"
-                            "img description";
+    grid-template-areas:
+        "img title"
+        "img description";
 
     grid-template-columns: 0fr 1fr;
+
+    img {
+        grid-area: img;
+    }
+
+    h2 {
+        grid-area: title;
+        align-self: self-end;
+        padding-inline-start: 10px;
+        margin-block-end: 0px;
+    }
+
+    p {
+        grid-area: description;
+        padding-inline-start: 10px;
+    }
+
+    img {
+        width: 20vw;
+        border-radius: 200px;
+    }
 }
 
-#about > img {
-    grid-area: img;
-}
+#portfolio {
+    article {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "img title"
+            "img description";
+    }
 
-#about > h2 {
-    grid-area: title;
-    align-self: self-end;
-    padding-inline-start: 10px;
-    margin-block-end: 0px;
-}
+    img {
+        grid-area: img;
+        width: 20vw;
+    }
 
-#about > p {
-    grid-area: description;
-    padding-inline-start: 10px;
-}
+    h3 {
+        grid-area: title;
+    }
 
-#about > img {
-    width: 20vw;
-    border-radius: 200px;
-}
+    p {
+        grid-area: description;
+    }
 
-#portfolio > article > img {
-    width: 40vw;
-}
-
-#portfolio > article:nth-child(2) > img {
-    height: 40vw;
-    width: unset;
+    article:nth-child(2) > img {
+        height: 20vw;
+        width: unset;
+    }
 }
