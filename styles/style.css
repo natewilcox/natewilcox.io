@@ -2,90 +2,199 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-nav {
-    position: sticky;
-    top: 0px;
-    background-color: white;
-    background-color: azure;
-
-    ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        justify-content: center;
-        margin-block-start: 0px;
-        padding-inline-start: 0px;
-    }
-
-    ul > li {
-        padding: 10px;
-    }
-}
-
-main {
-    max-width: 1250px;
-}
-
-#about {
     display: grid;
-    grid-template-areas:
-        "img title"
-        "img description";
-
-    grid-template-columns: 0fr 1fr;
-
-    img {
-        grid-area: img;
+    grid-template-areas: "left middle right";
+    grid-template-columns: 10% 1fr 10%;
+    background-color: #EAEAEA;
+    
+    header,
+    main,
+    footer {
+        grid-column: 2;
     }
 
-    h2 {
-        grid-area: title;
-        align-self: self-end;
-        padding-inline-start: 10px;
-        margin-block-end: 0px;
+    @media (max-width: 600px) {
+        grid-template-columns: 10px 1fr 10px;
     }
 
-    p {
-        grid-area: description;
-        padding-inline-start: 10px;
+    @media (min-width: 1250px) {
+        grid-template-columns: 20% 1fr 20%;
     }
 
-    img {
-        width: 20vw;
-        border-radius: 200px;
+    a {
+        text-decoration: none;
     }
-}
 
-#portfolio {
-    article {
+    header {
+        margin-block: 1.5rem;
         display: grid;
-        grid-template-columns: auto 1fr;
         grid-template-areas:
             "img title"
             "img description";
+
+        grid-template-columns: 0fr 1fr;
+
+        img {
+            grid-area: img;
+            align-self: center;
+            width: 10vw;
+            border-radius: 200px;
+
+            @media (max-width: 600px) {
+                width: 30vw;
+            }
+    
+            @media (min-width: 1250px) {
+                width: 5vw;
+            }
+        }
+
+        h2, p {
+            padding-inline-start: 10px;
+        }
+
+        h2 {
+            grid-area: title;
+            align-self: self-end;
+            margin-block-end: 0px;
+        }
+
+        p {
+            grid-area: description;
+        }
     }
 
-    img {
-        grid-area: img;
-        width: 20vw;
+    nav {
+        position: sticky;
+        top: 0px;
+        margin: 0px;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+        background-color: burlywood;
+        box-shadow: 100px 100px 200px burlywood;
+        grid-column: 1 / span 3;
+        z-index: 1;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            justify-content: center;
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+            padding-inline-start: 0px;
+
+            li {
+                padding: 10px;
+                font-size: large;
+                font-weight: bold;
+                background-color: white;
+                margin: 1rem;
+                border-radius: 10px;
+                border: solid 1px black;
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+                max-width: 10rem;
+
+                &:hover {
+                    background-color: chocolate;
+                    transition: all .25s;
+                }
+            }
+        }
     }
 
-    h3 {
-        grid-area: title;
-    }
+    #portfolio {
+        article {
 
-    p {
-        grid-area: description;
-    }
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 3rem auto;
+            grid-template-areas:
+                "img title"
+                "img description";
 
-    article:nth-child(2) > img {
-        height: 20vw;
-        width: unset;
+            margin: 10px;
+            padding: 1rem;
+            border: solid 1px black;
+            border-radius: 10px;
+            background-color: beige;
+            box-shadow: 1px 1px 10px;
+            opacity: .5;
+
+            > img {
+                grid-area: img;
+                width: 20vw;
+            }
+
+            > h3 {
+                grid-area: title;
+                padding-inline-start: 1rem;
+            }
+
+            > p {
+                grid-area: description;
+                line-height: 1.5rem;
+                padding-inline-start: 1rem;
+            }
+
+            &:hover {
+                background-color: wheat;
+                transform: translate(-5px, -5px);
+                box-shadow: 5px 5px 10px;
+                opacity: 1;
+
+                transition: all .125s;
+            }
+            
+            &:has(div) {
+                > div {
+                    grid-area: img;
+                    width: 20vw;
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+
+        @media (max-width: 600px) {
+            article {
+
+                opacity: 1;
+                box-shadow: none;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                grid-template-areas:
+                    "img"
+                    "title"
+                    "description";
+
+                > img {
+                    width: 100%;
+                }
+
+                > h3, > p {
+                    padding-inline-start: unset;
+                }
+
+                &:nth-child(2) > img {
+                    height: unset;
+                    width: 50%;
+                    justify-self: center;
+                }
+
+                &:has(div) {
+                    > div {
+                        grid-area: img;
+                        background-color: white;
+                        width: unset;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
     }
 }
