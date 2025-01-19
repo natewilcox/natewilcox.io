@@ -1,0 +1,257 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-areas: "left middle right";
+    grid-template-columns: 10% 1fr 10%;
+    background-color: #eaeaea;
+
+    > header,
+    > main,
+    > footer {
+        grid-column: 2;
+    }
+
+    @media (max-width: 1000px) {
+        grid-template-columns: 10px 1fr 10px;
+    }
+
+    @media (min-width: 1250px) {
+        grid-template-columns: 20% 1fr 20%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    > header {
+        margin-block: 1.5rem;
+        display: grid;
+        grid-template-areas:
+            "img title"
+            "img description";
+
+        grid-template-columns: 0fr 1fr;
+        grid-template-rows: 1fr auto;
+
+        > img {
+            grid-area: img;
+            align-self: center;
+            width: clamp(100px, 20vw, 200px);
+            border-radius: 200px;
+        }
+
+        h2,
+        p {
+            padding-inline-start: 10px;
+            margin-block-start: 0em;
+        }
+
+        h2 {
+            grid-area: title;
+            align-self: self-end;
+            margin-block-end: 0px;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        p {
+            grid-area: description;
+            font-size: clamp(1rem, 3vw, 2rem);
+        }
+    }
+
+    > nav {
+        position: sticky;
+        top: 0px;
+        margin: 0px;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+        background-color: burlywood;
+        box-shadow: 100px 100px 200px burlywood;
+        grid-column: 1 / span 3;
+        z-index: 1;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            justify-content: center;
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+            padding-inline-start: 0px;
+
+            li {
+                padding: 10px;
+                font-size: large;
+                font-weight: bold;
+                background-color: white;
+                margin: 1rem;
+                border-radius: 10px;
+                border: solid 1px black;
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+                max-width: 10rem;
+
+                &:hover {
+                    background-color: chocolate;
+                    transition: all 0.25s;
+                }
+            }
+        }
+    }
+
+    > main {
+        > #portfolio {
+            > article {
+                display: grid;
+                container-type: inline-size;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto 1fr auto;
+                grid-template-areas:
+                    "img title"
+                    "img description"
+                    "img link";
+
+                margin: 10px;
+                margin-block-end: 1.5rem;
+                padding: 1.5rem;
+                border: solid 1px black;
+                border-radius: 10px;
+                background-color: beige;
+                box-shadow: 1px 1px 10px;
+                opacity: 0.5;
+
+                > img {
+                    grid-area: img;
+                    width: 20vw;
+                }
+
+                > h3, > p, > a {
+                    padding-inline-start: 1.5rem;
+                }
+
+                > h3 {
+                    grid-area: title;
+                    font-size: 2rem;
+                    margin: 0;
+                }
+
+                > p {
+                    grid-area: description;
+                    line-height: 2rem;
+                    font-size: 1.5rem;
+                }
+
+                > a {
+                    grid-area: link;
+                    font-size: 1.5rem;
+                }
+
+                &:hover {
+                    background-color: wheat;
+                    transform: translate(-5px, -5px);
+                    box-shadow: 5px 5px 10px;
+                    opacity: 1;
+
+                    transition: all 0.125s;
+                }
+
+                &:has(div) {
+                    > div {
+                        grid-area: img;
+                        width: 20vw;
+                        background-color: white;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+
+                @media (max-width: 1000px) {
+                    opacity: 1;
+                    box-shadow: none;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto auto;
+                    grid-template-areas:
+
+                    "title"
+                        "img"
+                        "description"
+                        "link";
+
+                    > img {
+                        width: 100%;
+                    }
+
+                    > h3,
+                    > p, 
+                    > a {
+                        padding-inline-start: unset;
+                    }
+
+                    > h3 {
+                        font-size: 1.5rem;
+                    }
+
+                    > p {
+                        font-size: 1.25rem;
+                    }
+
+                    &:nth-child(2) > img {
+                        height: unset;
+                        width: 50%;
+                        justify-self: center;
+                    }
+
+                    &:has(div) {
+                        > div {
+                            grid-area: img;
+                            background-color: white;
+                            width: unset;
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: beige;
+                        transform: unset;
+                        box-shadow: unset;
+                        opacity: unset;
+                    }
+                }
+            }
+        }
+
+        > #contact {
+
+            background-color: #eeeeee;
+            padding: 1rem;
+            border-radius: 10px;
+            
+            > dl {
+                
+                display: flex;
+                flex-direction: column;
+
+                > div {
+
+                    display: flex;
+
+                    > dt > svg {
+                        width: 2rem;
+                        height: 2rem;
+                    }
+
+                    > dd {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        margin-inline-start: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
