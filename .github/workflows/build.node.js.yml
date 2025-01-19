@@ -7,30 +7,30 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  # build:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.6.1]
+  #   strategy:
+  #     matrix:
+  #       node-version: [20.6.1]
 
-    steps:
-    - uses: actions/checkout@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: export NODE_OPTIONS=--openssl-legacy-provider && npm run build --if-present
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v3
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #       cache: 'npm'
+  #   - run: npm ci
+  #   - run: export NODE_OPTIONS=--openssl-legacy-provider && npm run build --if-present
 
-    - name: Upload to Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-artifact
-        path: ./build
+  #   - name: Upload to Artifacts
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: build-artifact
+  #       path: ./build
 
   deploy:
     needs: build
@@ -39,11 +39,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Download Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: build-artifact
-        path: ./build
+    # - name: Download Artifacts
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: build-artifact
+    #     path: ./build
         
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v3
@@ -53,7 +53,7 @@ jobs:
         aws-region: us-east-2
 
     - name: Deploy to S3 bucket
-      run: aws s3 sync ./build s3://www.natewilcox.io/ --acl=private --delete
+      run: aws s3 sync ./ s3://www.natewilcox.io/ --acl=private --delete
 
     - name: Invalidate CloudFront cache
       run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/index.html"
